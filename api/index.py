@@ -1,8 +1,8 @@
+from flask import Flask, request, jsonify, Response, stream_with_context
+from flask_cors import CORS
 import os
 import random
 import pandas as pd
-from flask import Flask, request, jsonify, Response, stream_with_context
-from flask_cors import CORS
 import requests
 from openpyxl import load_workbook
 from openpyxl.utils import range_boundaries

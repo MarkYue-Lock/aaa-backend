@@ -1,0 +1,87 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <title>AAA Retail Ratesheet</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
+  <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+</head>
+
+<body>
+  <div id="full-pdf">
+    <div id="pdf-loading">
+        <div class="gemini-loader"></div>
+        <p id="pdf-status-text">Scanning for latest ratesheet...</p>
+    </div>
+    <iframe id="main-pdf-frame"></iframe>
+  </div>
+
+  <div id="chatbot-button">
+    <span class="material-symbols-outlined" style="font-size: 32px; color: #0b57d0;">chat</span>
+  </div>
+
+  <div id="chat-intro">
+    <div id="chat-intro-text">Hello! I am Lil A. Finding the latest ratesheet...</div>
+    <button id="chat-intro-close" onclick="hideIntroBubble()">×</button>
+  </div>
+
+  <div id="chatbot-overlay">
+    <div class="container">
+      <div class="pdf-pane" id="pdf-pane">
+        <iframe id="chat-pdf-frame"></iframe>
+        <div class="resizer" id="resizer"></div>
+      </div>
+
+      <div class="chat-pane">
+        <button id="close-chat-icon" onclick="closeChat()" title="Close Chat">
+            <span class="material-symbols-outlined">close</span>
+        </button>
+
+        <div id="messages" class="messages"></div>
+        
+        <div id="loading-indicator">
+          <div class="gemini-loader"></div>
+          <span class="loading-text">Lil A is thinking...</span>
+        </div>
+
+        <div class="input-area-wrapper">
+            <div id="file-preview-area"></div>
+            <div class="input-row">
+                <input 
+                    type="file" 
+                    id="excel-input" 
+                    style="display: none;" 
+                    accept=".xlsx, .xls, application/vnd.openxmlformats-officedocument.spreadsheetml.sheet, application/vnd.ms-excel" 
+                />
+
+                <input id="input" type="text" placeholder="Ask About Retail Channel..." />
+                
+                <div class="input-divider"></div>
+
+                <div class="custom-select-container" id="custom-select">
+                    <div class="custom-select-trigger" onclick="toggleDropdown()">
+                        <span id="current-mode-text">Retail Channel</span>
+                        <span class="material-symbols-outlined arrow-icon">arrow_drop_down</span>
+                    </div>
+                    <div class="custom-options">
+                        <div class="custom-option selected" onclick="selectMode('retail', this)">Retail Channel</div>
+                        <div class="custom-option" onclick="selectMode('homeport', this)">HomePort Qualifier</div>
+                    </div>
+                </div>
+
+                <button id="send-button" onclick="send()">
+                    <span class="material-symbols-outlined">send</span>
+                </button>
+            </div>
+            <div style="font-size: 11px; color: #888; text-align: center; margin-top: 6px;">Lil A can make mistakes, please double check.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <script src="script.js"></script>
+</body>
+</html>
